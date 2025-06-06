@@ -2,7 +2,7 @@ import './BlogsPage.css';
 
 function BlogsPage() {
   return (<>
-    <p>Blogs pagina werkt!</p>
+    <h1>Blogs pagina</h1>
   </>);
 }
 

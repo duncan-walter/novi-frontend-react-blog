@@ -4,31 +4,31 @@ import {NavLink} from "react-router-dom";
 
 function Navigation() {
   return (<>
-    <header>
+    <div className="navigation">
       <img src={logo} className="nav-company-logo" alt="Company logo"/>
       <nav>
         <NavLink
           to="/"
-          className={({ isActive }) => isActive ? 'nav-item-active' : 'nav-item'}
+          className={({isActive}) => isActive ? 'nav-item-active' : 'nav-item'}
         >
           Home
         </NavLink>
 
         <NavLink
           to="/blogs"
-          className={({ isActive }) => isActive ? 'nav-item-active' : 'nav-item'}
+          className={({isActive}) => isActive ? 'nav-item-active' : 'nav-item'}
         >
           Alle blogs
         </NavLink>
 
         <NavLink
           to="/nieuwe-blog"
-          className={({ isActive }) => isActive ? 'nav-item-active' : 'nav-item'}
+          className={({isActive}) => isActive ? 'nav-item-active' : 'nav-item'}
         >
           Nieuwe blog
         </NavLink>
       </nav>
-    </header>
+    </div>
   </>);
 }
 

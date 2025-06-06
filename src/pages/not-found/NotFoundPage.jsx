@@ -2,7 +2,7 @@ import './NotFoundPage.css';
 
 function NotFoundPage() {
   return (<>
-    <p>Niet gevonden pagina werkt!</p>
+    <h1>Niet gevonden pagina</h1>
   </>);
 }
 

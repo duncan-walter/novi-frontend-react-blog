@@ -2,7 +2,7 @@ import './HomePage.css';
 
 function HomePage() {
   return (<>
-    <p>Home pagina werkt!</p>
+    <h1>Home pagina</h1>
   </>);
 }
 

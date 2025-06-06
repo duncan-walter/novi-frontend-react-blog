@@ -2,7 +2,7 @@ import './NewBlogPage.css';
 
 function NewBlogPage() {
   return (<>
-    <p>Nieuwe blog pagina werkt!</p>
+    <h1>Nieuwe blog pagina</h1>
   </>);
 }
 

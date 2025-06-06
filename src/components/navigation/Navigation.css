@@ -1,4 +1,4 @@
-header {
+.navigation {
     display: flex;
     justify-content: space-between;
     background: rgb(44, 47, 57);
