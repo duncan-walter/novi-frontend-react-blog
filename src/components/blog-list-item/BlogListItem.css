@@ -1,0 +1,10 @@
+.blog-list-item {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 3px 3px;
+    padding: 1em;
+
+    h4 {
+        margin: 0;
+    }
+}
