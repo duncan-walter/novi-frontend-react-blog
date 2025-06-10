@@ -1,0 +1,10 @@
+.new-blog-form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+
+.error-message {
+    color: red;
+    font-size: .75em;
+}
