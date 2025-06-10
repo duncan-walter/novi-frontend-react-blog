@@ -22,3 +22,9 @@ body {
 main {
     padding: 1em;
 }
+
+a {
+    color: var(--color-primary);
+    font-weight: 500;
+    text-decoration: none;
+}

@@ -10,10 +10,6 @@
     box-shadow: rgba(0, 0, 0, 0.1) 0 3px 3px;
     padding: 1em;
 
-    a {
-        color: var(--color-primary);
-    }
-
     h4 {
         margin: 0;
     }
