@@ -6,6 +6,7 @@ import {useForm} from 'react-hook-form';
 import {useNavigate} from "react-router-dom";
 
 import TextFormControl from "../../components/form-controls/text-form-control/TextFormControl.jsx";
+import TextareaFormControl from "../../components/form-controls/textarea-form-control/TextareaFormControl.jsx";
 
 function NewBlogPage() {
   const {
@@ -36,8 +37,8 @@ function NewBlogPage() {
     <form className="new-blog-form" onSubmit={handleSubmit(handleFormSubmit)}>
       <TextFormControl
         id="newBlogFormTitle"
-        labelText="Titel"
         controlName="title"
+        labelText="Titel"
         required={true}
         register={register}
         error={errors.title}
@@ -45,8 +46,8 @@ function NewBlogPage() {
 
       <TextFormControl
         id="newBlogFormSubTitle"
-        labelText="Subtitel"
         controlName="subtitle"
+        labelText="Subtitel"
         required={true}
         register={register}
         error={errors.subtitle}
@@ -54,34 +55,23 @@ function NewBlogPage() {
 
       <TextFormControl
         id="newBlogFormAuthor"
-        labelText="Auteur"
         controlName="author"
+        labelText="Auteur"
         required={true}
         register={register}
         error={errors.author}
       />
 
-      <label htmlFor="newBlogFormContent">Content:</label>
-      <textarea
+      <TextareaFormControl
         id="newBlogFormContent"
-        rows="5"
-        autoComplete="off"
-        {...register("content", {
-          required: {
-            value: true,
-            message: "Content is verplicht"
-          },
-          minLength: {
-            value: 300,
-            message: "Content moet minimaal 300 karakters lang zijn"
-          },
-          maxLength: {
-            value: 2000,
-            message: "Content moet maximaal 2000 karakters lang zijn"
-          }
-        })}
+        controlName="content"
+        labelText="Content"
+        required={true}
+        minLength={300}
+        maxLength={2000}
+        register={register}
+        error={errors.content}
       />
-      {errors.content && <span className="error-message">{errors.content.message}</span>}
 
       <button type="submit">Toevoegen</button>
     </form>
