@@ -1,8 +1,8 @@
-import './BlogsPage.css';
+import './BlogsOverviewPage.css';
 import blogs from '../../constants/data.json';
 import {Link} from "react-router-dom";
 
-function BlogsPage() {
+function BlogsOverviewPage() {
   return (<>
     <h1>Bekijk alle {blogs.length} blogs op het platform</h1>
     <div className="blog-overview">
@@ -18,4 +18,4 @@ function BlogsPage() {
   </>);
 }
 
-export default BlogsPage;
+export default BlogsOverviewPage;
