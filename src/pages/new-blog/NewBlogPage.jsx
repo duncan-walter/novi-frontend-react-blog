@@ -5,6 +5,8 @@ import CalculateReadTime from "../../helpers/calculateReadTime.js";
 import {useForm} from 'react-hook-form';
 import {useNavigate} from "react-router-dom";
 
+import TextFormControl from "../../components/form-controls/text-form-control/TextFormControl.jsx";
+
 function NewBlogPage() {
   const {
     handleSubmit,
@@ -32,50 +34,32 @@ function NewBlogPage() {
   return (<>
     <h1>Blog toevoegen</h1>
     <form className="new-blog-form" onSubmit={handleSubmit(handleFormSubmit)}>
-      <label htmlFor="newBlogFormTitle">Titel:
-        <input
-          type="text"
-          id="newBlogFormTitle"
-          autoComplete="off"
-          {...register("title", {
-            required: {
-              value: true,
-              message: "Titel is verplicht"
-            }
-          })}
-        />
-      </label>
-      {errors.title && <span className="error-message">{errors.title.message}</span>}
+      <TextFormControl
+        id="newBlogFormTitle"
+        labelText="Titel"
+        controlName="title"
+        required={true}
+        register={register}
+        error={errors.title}
+      />
 
-      <label htmlFor="newBlogFormSubTitle">Subtitel:
-        <input
-          type="text"
-          id="newBlogSubTitle"
-          autoComplete="off"
-          {...register("subtitle", {
-            required: {
-              value: true,
-              message: "Subtitel is verplicht"
-            }
-          })}
-        />
-      </label>
-      {errors.subtitle && <span className="error-message">{errors.subtitle.message}</span>}
+      <TextFormControl
+        id="newBlogFormSubTitle"
+        labelText="Subtitel"
+        controlName="subtitle"
+        required={true}
+        register={register}
+        error={errors.subtitle}
+      />
 
-      <label htmlFor="newBlogFormAuthor">Auteur:
-        <input
-          type="text"
-          id="newBlogFormAuthor"
-          autoComplete="off"
-          {...register("author", {
-            required: {
-              value: true,
-              message: "Auteur is verplicht"
-            }
-          })}
-        />
-      </label>
-      {errors.author && <span className="error-message">{errors.author.message}</span>}
+      <TextFormControl
+        id="newBlogFormAuthor"
+        labelText="Auteur"
+        controlName="author"
+        required={true}
+        register={register}
+        error={errors.author}
+      />
 
       <label htmlFor="newBlogFormContent">Content:</label>
       <textarea

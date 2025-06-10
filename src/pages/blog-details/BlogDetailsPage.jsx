@@ -12,6 +12,7 @@ function BlogDetailsPage() {
   // if (!blogs.some(blog => blog.id === id)) { useNavigate('/not-found'); }
   // Dit kon ik alleen niet in de body van deze BlogDetailsPage functie kwijt en ook niet in de return statement.
   return (
+    // Ik twijfel of ik voor de details van een blog een apart component zal maken, of dat de pagina zelf hiervoor voldoende is.
     <div className="blog-details">
       <h1>{blog.title} ({blog.readTime} minuten)</h1>
       <h2>{blog.subtitle}</h2>
