@@ -22,12 +22,12 @@
         }
 
         .nav-item-active {
-            border-bottom: 2px solid #75E699;
+            border-bottom: 2px solid var(--color-primary);
         }
 
         .nav-item-active,
         a:hover {
-            color: #75E699;
+            color: var(--color-primary);
         }
     }
 }
