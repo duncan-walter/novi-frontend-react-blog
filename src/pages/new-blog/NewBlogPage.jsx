@@ -7,6 +7,7 @@ import {useNavigate} from "react-router-dom";
 
 import TextFormControl from "../../components/form-controls/text-form-control/TextFormControl.jsx";
 import TextareaFormControl from "../../components/form-controls/textarea-form-control/TextareaFormControl.jsx";
+import Button from "../../components/button/Button.jsx";
 
 function NewBlogPage() {
   const {
@@ -73,7 +74,7 @@ function NewBlogPage() {
         error={errors.content}
       />
 
-      <button type="submit">Toevoegen</button>
+      <Button type="submit" text="Toevoegen" />
     </form>
   </>);
 }
