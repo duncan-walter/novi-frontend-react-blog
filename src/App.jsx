@@ -16,7 +16,7 @@ function App() {
     <header>
       <Navigation/>
     </header>
-    <main>
+    <main className="outer-container">
       <Routes>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/blogs" element={<BlogsOverviewPage/>}/>

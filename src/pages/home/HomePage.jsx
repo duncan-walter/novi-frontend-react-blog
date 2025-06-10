@@ -1,9 +1,11 @@
 import './HomePage.css';
 
 function HomePage() {
-  return (<>
-    <h1>Home pagina</h1>
-  </>);
+  return (
+    <div className="inner-container">
+      <h1>Home pagina</h1>
+    </div>
+  );
 }
 
 export default HomePage;

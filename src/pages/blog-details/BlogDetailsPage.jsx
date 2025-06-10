@@ -14,7 +14,7 @@ function BlogDetailsPage() {
   // Dit kon ik alleen niet in de body van deze BlogDetailsPage functie kwijt en ook niet in de return statement.
   return (
     // Ik twijfel of ik voor de details van een blog een apart component zal maken, of dat de pagina zelf hiervoor voldoende is.
-    <div className="blog-details">
+    <div className="blog-details inner-container">
       <h1>{blog.title}</h1>
       <h2>{blog.subtitle}</h2>
       <p>Geschreven door {blog.author} op {formatDate(blog.created)}</p>

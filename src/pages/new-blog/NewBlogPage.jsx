@@ -33,50 +33,52 @@ function NewBlogPage() {
     navigate("/blogs");
   }
 
-  return (<>
-    <h1>Blog toevoegen</h1>
-    <form className="new-blog-form" onSubmit={handleSubmit(handleFormSubmit)}>
-      <TextFormControl
-        id="newBlogFormTitle"
-        controlName="title"
-        labelText="Titel"
-        required={true}
-        register={register}
-        error={errors.title}
-      />
+  return (
+    <div className="inner-container">
+      <h1>Blog toevoegen</h1>
+      <form className="new-blog-form" onSubmit={handleSubmit(handleFormSubmit)}>
+        <TextFormControl
+          id="newBlogFormTitle"
+          controlName="title"
+          labelText="Titel"
+          required={true}
+          register={register}
+          error={errors.title}
+        />
 
-      <TextFormControl
-        id="newBlogFormSubTitle"
-        controlName="subtitle"
-        labelText="Subtitel"
-        required={true}
-        register={register}
-        error={errors.subtitle}
-      />
+        <TextFormControl
+          id="newBlogFormSubTitle"
+          controlName="subtitle"
+          labelText="Subtitel"
+          required={true}
+          register={register}
+          error={errors.subtitle}
+        />
 
-      <TextFormControl
-        id="newBlogFormAuthor"
-        controlName="author"
-        labelText="Auteur"
-        required={true}
-        register={register}
-        error={errors.author}
-      />
+        <TextFormControl
+          id="newBlogFormAuthor"
+          controlName="author"
+          labelText="Auteur"
+          required={true}
+          register={register}
+          error={errors.author}
+        />
 
-      <TextareaFormControl
-        id="newBlogFormContent"
-        controlName="content"
-        labelText="Content"
-        required={true}
-        minLength={300}
-        maxLength={2000}
-        register={register}
-        error={errors.content}
-      />
+        <TextareaFormControl
+          id="newBlogFormContent"
+          controlName="content"
+          labelText="Content"
+          required={true}
+          minLength={300}
+          maxLength={2000}
+          register={register}
+          error={errors.content}
+        />
 
-      <Button type="submit" text="Toevoegen" />
-    </form>
-  </>);
+        <Button type="submit" text="Toevoegen"/>
+      </form>
+    </div>
+  );
 }
 
 export default NewBlogPage;
