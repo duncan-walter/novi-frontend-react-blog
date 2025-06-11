@@ -1,0 +1,12 @@
+.button-base {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: .5em 2em;
+    color: var(--color-secondary);
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+}
