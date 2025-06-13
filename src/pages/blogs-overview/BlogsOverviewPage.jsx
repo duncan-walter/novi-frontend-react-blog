@@ -1,6 +1,6 @@
 import './BlogsOverviewPage.css';
-import blogs from '../../constants/data.json';
 
+import {useEffect, useState} from "react";
 import axios from "axios";
 
 import BlogListItem from "../../components/blog-list-item/BlogListItem.jsx";
@@ -14,7 +14,12 @@ function BlogsOverviewPage() {
   const APIBaseURL = 'https://novi-backend-api-wgsgz.ondigitalocean.app/api';
   const APIProjectIDHeader = {'Novi-Education-Project-Id': 'ec0bf4cc-4e94-4807-8041-d95b0731722b'};
 
+  const [blogs, setBlogs] = useState([]);
+  const [error, setError] = useState('');
+
   async function getBlogs() {
+    setError('');
+
     try {
       const response = await axios.get('/api/blogs', {
         headers: {
@@ -22,9 +27,9 @@ function BlogsOverviewPage() {
         }
       });
 
-      console.log(response.data);
+      setBlogs(response.data);
     } catch (e) {
-      console.error(e);
+      setError('Er ging iets fout tijdens het ophalen van de blogs!');
     }
   }
 
@@ -106,25 +111,40 @@ function BlogsOverviewPage() {
     }
   }
 
+  useEffect(() => {
+    // Ik kan dit niet awaiten in useEffect?
+    // Wat is de nette manier om dit asynchroon te doen?
+    getBlogs();
+  }, []);
+
   return (
     <div className="inner-container">
-      <Button text="Blogs ophalen" handleClick={getBlogs}/>
-      <Button text="Blog 6 ophalen" handleClick={async () => {
-        await getBlogById(6)
-      }}/>
-      <Button text="Voeg hardcoded blog toe" handleClick={async () => {
-        await postBlog()
-      }}/>
-      <Button text="Update blog" handleClick={async () => {
-        await updateBlogById(1)
-      }}/>
-      <Button text="Delete blog" handleClick={async () => {
-        await deleteBlogById(19)
-      }}/>
-      <h1>Bekijk alle {blogs.length} blogs op het platform</h1>
-      <div className="blog-overview">
-        {blogs.map(blog => <BlogListItem key={blog.id} blog={blog}/>)}
+      {/* Debugging controls */}
+      <div>
+        <Button text="Blogs ophalen" handleClick={getBlogs}/>
+        <Button text="Blog 6 ophalen" handleClick={async () => {
+          await getBlogById(6)
+        }}/>
+        <Button text="Voeg hardcoded blog toe" handleClick={async () => {
+          await postBlog()
+        }}/>
+        <Button text="Update blog" handleClick={async () => {
+          await updateBlogById(1)
+        }}/>
+        <Button text="Delete blog" handleClick={async () => {
+          await deleteBlogById(19)
+        }}/>
       </div>
+
+      <h1>Bekijk alle {blogs.length} blogs op het platform</h1>
+
+      {error ? (
+        <span className="error-message">{error}</span>
+      ) : (
+        <div className="blog-overview">
+          {blogs.map(blog => <BlogListItem key={blog.id} blog={blog}/>)}
+        </div>
+      )}
     </div>
   );
 }
