@@ -1,13 +1,35 @@
 import './BlogDetailsPage.css';
-import blogs from '../../constants/data.json';
 import formatDate from "../../helpers/formatDate.js";
 
+import {useEffect, useState} from "react";
 import {Link, useParams} from 'react-router-dom';
+import axios from "axios";
+
 import {CaretLeftIcon, TimerIcon} from "@phosphor-icons/react";
 
 function BlogDetailsPage() {
+  const [blog, setBlog] = useState({});
   const {id} = useParams();
-  const blog = blogs.find(blog => blog.id.toString() === id);
+
+  const APIProjectIDHeader = {'Novi-Education-Project-Id': 'ec0bf4cc-4e94-4807-8041-d95b0731722b'};
+
+  async function getBlogById(id) {
+    try {
+      const response = await axios.get(`/api/blogs/${id}`, {
+        headers: {
+          ...APIProjectIDHeader
+        }
+      });
+
+      setBlog(response.data)
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  useEffect(() => {
+    getBlogById(id);
+  }, []);
 
   // Ik wilde de gebruiker graag navigeren naar de not found pagina indien het id niet voorkomt:
   // if (!blogs.some(blog => blog.id === id)) { useNavigate('/not-found'); }

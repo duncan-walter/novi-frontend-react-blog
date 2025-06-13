@@ -7,15 +7,15 @@ import BlogListItem from "../../components/blog-list-item/BlogListItem.jsx";
 import Button from "../../components/button/Button.jsx";
 
 function BlogsOverviewPage() {
+  const [blogs, setBlogs] = useState([]);
+  const [error, setError] = useState('');
+
   // Normaal zal ik deze url gebruiken, maar ik had cors problemen.
   // De oplossing was om een proxy te gebruiken zodat de cors problemen niet voorkomen omdat de communicatie server > server is.
   // Alle calls naar /api/... worden door de proxy opgevangen en doorgestuurd naar de APIBaseURL zoals die hieronder staat.
   // Dit staat geconfigureerd in vite.config.js.
   const APIBaseURL = 'https://novi-backend-api-wgsgz.ondigitalocean.app/api';
   const APIProjectIDHeader = {'Novi-Education-Project-Id': 'ec0bf4cc-4e94-4807-8041-d95b0731722b'};
-
-  const [blogs, setBlogs] = useState([]);
-  const [error, setError] = useState('');
 
   async function getBlogs() {
     setError('');
@@ -121,10 +121,6 @@ function BlogsOverviewPage() {
     <div className="inner-container">
       {/* Debugging controls */}
       <div>
-        <Button text="Blogs ophalen" handleClick={getBlogs}/>
-        <Button text="Blog 6 ophalen" handleClick={async () => {
-          await getBlogById(6)
-        }}/>
         <Button text="Voeg hardcoded blog toe" handleClick={async () => {
           await postBlog()
         }}/>
