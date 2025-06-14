@@ -1,14 +1,16 @@
 import './BlogDetailsPage.css';
 
 import {useEffect, useState} from "react";
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import axios from "axios";
 
 import BlogDetails from "../../components/blog-details/BlogDetails.jsx";
+import Button from "../../components/button/Button.jsx";
 
 function BlogDetailsPage() {
   const [blog, setBlog] = useState(undefined);
   const [error, setError] = useState('');
+  const [blogDeleted, toggleBlogDeleted] = useState(false);
 
   const {id} = useParams();
 
@@ -31,16 +33,39 @@ function BlogDetailsPage() {
     }
   }
 
+  async function deleteBlogById(id) {
+    try {
+      await axios.delete(`/api/blogs/${id}`, {
+        headers: {
+          ...APIProjectIDHeader
+        }
+      });
+
+      toggleBlogDeleted(true);
+    } catch (e) {
+      setError(`Er ging iets fout tijdens het verwijderen van de blog! Refresh de pagina en probeer het opnieuw!`);
+    }
+  }
+
   useEffect(() => {
     getBlogById(id);
   }, []);
 
   return (
-    <div className="blog-details inner-container">
-      {error ? (
-        <span className='error-message'>{error}</span>
+    <div className="inner-container">
+      {blogDeleted ? (
+        <div className="blog-details__deleted">
+          <span>👋De blogpost is succesvol verwijdert. Klik <Link to='/blogs'>hier</Link> om naar het overzicht te gaan.👋</span>
+        </div>
       ) : (
-        blog && <BlogDetails blog={blog} />
+        error ? (
+          <span className='error-message'>{error}</span>
+        ) : (
+          blog && <div className="blog-details-container">
+            <BlogDetails blog={blog}/>
+            <Button text="Verwijder blog" variant="danger" handleClick={() => deleteBlogById(id)}/>
+          </div>
+        )
       )}
     </div>
   );

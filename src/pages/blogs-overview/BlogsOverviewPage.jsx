@@ -53,21 +53,6 @@ function BlogsOverviewPage() {
     }
   }
 
-  async function deleteBlogById(id) {
-    try {
-      await axios.delete(`/api/blogs/${id}`, {
-        headers: {
-          ...APIProjectIDHeader
-        }
-      });
-
-      console.log(`Blog (id: ${id}) is succesvol verwijdert!`);
-    } catch (e) {
-      console.error(`Blog (id: ${id}) kon niet worden verwijdert!`)
-      console.error(e);
-    }
-  }
-
   useEffect(() => {
     // Ik kan dit niet awaiten in useEffect?
     // Wat is de nette manier om dit asynchroon te doen?
@@ -80,9 +65,6 @@ function BlogsOverviewPage() {
       <div>
         <Button text="Update blog" handleClick={async () => {
           await updateBlogById(1)
-        }}/>
-        <Button text="Delete blog" handleClick={async () => {
-          await deleteBlogById(19)
         }}/>
       </div>
 

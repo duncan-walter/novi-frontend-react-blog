@@ -1,0 +1,6 @@
+.blog-details__deleted {
+    border-radius: 5px;
+    padding: 1em;
+    background-color: var(--color-danger);
+    color: var(--color-white);
+}
