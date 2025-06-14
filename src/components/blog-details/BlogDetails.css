@@ -1,9 +1,16 @@
-.blog-details__read-time {
-    display: flex;
-    align-items: center;
-    font-size: .9em;
+.blog-details {
+    .blog-details__read-time {
+        display: flex;
+        align-items: center;
+        font-size: .9em;
 
-    svg {
-        margin-right: .25em;
+        svg {
+            margin-right: .25em;
+        }
+    }
+
+    .blog-details__back-link {
+        display: flex;
+        align-items: center;
     }
 }

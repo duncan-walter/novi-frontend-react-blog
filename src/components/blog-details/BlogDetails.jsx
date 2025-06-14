@@ -16,7 +16,7 @@ function BlogDetails({blog}) {
       </span>
       <p>{blog.content}</p>
       <p>{blog.comments} reacties - {blog.shares} keer gedeeld</p>
-      <Link to="/blogs">
+      <Link to="/blogs" className="blog-details__back-link">
         {/* Ik geef de icon geen size mee zodat hij meeschaalt met de fontsize */}
         <CaretLeftIcon/>
         Terug naar de overzichtspagina</Link>
