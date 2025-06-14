@@ -1,4 +1,15 @@
-.new-blog-form {
+.new-blog__form {
     display: flex;
     flex-direction: column;
+}
+
+.new-blog__success {
+    border-radius: 5px;
+    padding: 1em;
+    background-color: var(--color-primary);
+
+    a {
+        color: var(--color-white);
+        text-decoration: underline;
+    }
 }

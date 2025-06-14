@@ -14,7 +14,7 @@ function BlogDetails({blog}) {
       <span className="blog-details__read-time">
         <TimerIcon/>{blog.readTime} {blog.readTime > 1 ? "minuten" : "minuut"} lezen
       </span>
-      <p>{blog.content}</p>
+      <p className="blog-details__content">{blog.content}</p>
       <p>{blog.comments} reacties - {blog.shares} keer gedeeld</p>
       <Link to="/blogs" className="blog-details__back-link">
         {/* Ik geef de icon geen size mee zodat hij meeschaalt met de fontsize */}

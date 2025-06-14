@@ -33,49 +33,6 @@ function BlogsOverviewPage() {
     }
   }
 
-  async function getBlogById(id) {
-    try {
-      const response = await axios.get(`/api/blogs/${id}`, {
-        headers: {
-          ...APIProjectIDHeader
-        }
-      });
-
-      console.log(response.data);
-
-      return response.data;
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
-  async function postBlog() {
-    try {
-      const blog = {
-        'title': 'Wat gebruiker heeft ingevuld',
-        'subtitle': 'Wat gebruiker heeft ingevuld',
-        'content': 'Wat gebruiker heeft ingevuld, in dit geval meer dan 300 letters. Wat gebruiker heeft ingevuld, in dit geval meer dan 300 letters. Wat gebruiker heeft ingevuld, in dit geval meer dan 300 letters. Wat gebruiker heeft ingevuld, in dit geval meer dan 300 letters. Wat gebruiker heeft ingevuld, in dit geval meer dan 300 letters. Wat gebruiker heeft ingevuld, in dit geval meer dan 300 letters. Wat gebruiker heeft ingevuld, in dit geval meer dan 300 letters. Wat gebruiker heeft ingevuld, in dit geval meer dan 300 letters.',
-        'author': 'Voornaam achternaam',
-        'created': '2023-09-21T09:30:00Z',
-        'readTime': 1,
-        'comments': 0,
-        'shares': 0
-      }
-
-      const response = await axios.post('/api/blogs', blog, {
-        headers: {
-          ...APIProjectIDHeader
-        }
-      });
-
-      console.log(`Blog id: ${response.data.id} is succesvol toegevoegd!`);
-      console.log(response);
-    } catch (e) {
-      console.error('Blog kon niet worden toegevoegd!');
-      console.error(e);
-    }
-  }
-
   async function updateBlogById(id) {
     try {
       // Voor de opdracht wordt nu de eerste blog gebruikt.
@@ -121,9 +78,6 @@ function BlogsOverviewPage() {
     <div className="inner-container">
       {/* Debugging controls */}
       <div>
-        <Button text="Voeg hardcoded blog toe" handleClick={async () => {
-          await postBlog()
-        }}/>
         <Button text="Update blog" handleClick={async () => {
           await updateBlogById(1)
         }}/>
