@@ -4,10 +4,10 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 import BlogListItem from "../../components/blog-list-item/BlogListItem.jsx";
-import Button from "../../components/button/Button.jsx";
 
 function BlogsOverviewPage() {
   const [blogs, setBlogs] = useState([]);
+  const [loading, toggleLoading] = useState(false);
   const [error, setError] = useState('');
 
   // Normaal zal ik deze url gebruiken, maar ik had cors problemen.
@@ -19,6 +19,7 @@ function BlogsOverviewPage() {
 
   async function getBlogs() {
     setError('');
+    toggleLoading(true);
 
     try {
       const response = await axios.get('/api/blogs', {
@@ -30,28 +31,31 @@ function BlogsOverviewPage() {
       setBlogs(response.data);
     } catch (e) {
       setError('Er ging iets fout tijdens het ophalen van de blogs!');
+    } finally {
+      toggleLoading(false);
     }
   }
 
-  async function updateBlogById(id) {
-    try {
-      // Voor de opdracht wordt nu de eerste blog gebruikt.
-      const firstBlog = await getBlogById(1);
-      firstBlog.subtitle = 'Updated!';
-
-      const response = await axios.put(`/api/blogs/${firstBlog.id}`, firstBlog, {
-        headers: {
-          ...APIProjectIDHeader
-        }
-      });
-
-      console.log(`Blog id: ${response.data.id} is succesvol geüpdatet!`);
-      console.log(response);
-    } catch (e) {
-      console.error(`Blog kon niet worden geüpdatet!`)
-      console.error(e);
-    }
-  }
+  // Update blog is voor nu uitgecommentarieerd omdat de getBlogById functie verhuist is.
+  // async function updateBlogById(id) {
+  //   try {
+  //     // Voor de opdracht wordt nu de eerste blog gebruikt.
+  //     const firstBlog = await getBlogById(1);
+  //     firstBlog.subtitle = 'Updated!';
+  //
+  //     const response = await axios.put(`/api/blogs/${firstBlog.id}`, firstBlog, {
+  //       headers: {
+  //         ...APIProjectIDHeader
+  //       }
+  //     });
+  //
+  //     console.log(`Blog id: ${response.data.id} is succesvol geüpdatet!`);
+  //     console.log(response);
+  //   } catch (e) {
+  //     console.error(`Blog kon niet worden geüpdatet!`)
+  //     console.error(e);
+  //   }
+  // }
 
   useEffect(() => {
     // Ik kan dit niet awaiten in useEffect?
@@ -61,22 +65,19 @@ function BlogsOverviewPage() {
 
   return (
     <div className="inner-container">
-      {/* Debugging controls */}
-      <div>
-        <Button text="Update blog" handleClick={async () => {
-          await updateBlogById(1)
-        }}/>
-      </div>
+      {loading ? (
+        <div>Alle blogs worden nu opgehaald...</div>
+      ) : (<>
+        <h1>Bekijk alle {blogs.length} blogs op het platform</h1>
 
-      <h1>Bekijk alle {blogs.length} blogs op het platform</h1>
-
-      {error ? (
-        <span className="error-message">{error}</span>
-      ) : (
-        <div className="blog-overview">
-          {blogs.map(blog => <BlogListItem key={blog.id} blog={blog}/>)}
-        </div>
-      )}
+        {error ? (
+          <span className="error-message">{error}</span>
+        ) : (
+          <div className="blog-overview">
+            {blogs.map(blog => <BlogListItem key={blog.id} blog={blog}/>)}
+          </div>
+        )}
+      </>)}
     </div>
   );
 }

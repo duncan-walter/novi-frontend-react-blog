@@ -9,6 +9,7 @@ import Button from "../../components/button/Button.jsx";
 
 function BlogDetailsPage() {
   const [blog, setBlog] = useState(undefined);
+  const [loading, toggleLoading] = useState(false);
   const [error, setError] = useState('');
   const [blogDeleted, toggleBlogDeleted] = useState(false);
 
@@ -19,6 +20,7 @@ function BlogDetailsPage() {
 
   async function getBlogById(id) {
     setError('')
+    toggleLoading(true);
 
     try {
       const response = await axios.get(`/api/blogs/${id}`, {
@@ -30,6 +32,8 @@ function BlogDetailsPage() {
       setBlog(response.data)
     } catch (e) {
       setError(`Er ging iets fout tijdens het ophalen van de blog! (id: ${id})`)
+    } finally {
+      toggleLoading(false);
     }
   }
 
@@ -58,13 +62,17 @@ function BlogDetailsPage() {
           <span>👋De blogpost is succesvol verwijdert. Klik <Link to='/blogs'>hier</Link> om naar het overzicht te gaan.👋</span>
         </div>
       ) : (
-        error ? (
-          <span className='error-message'>{error}</span>
+        loading ? (
+          <div>De details van de blog worden nu opgehaald...</div>
         ) : (
-          blog && <div className="blog-details-container">
-            <BlogDetails blog={blog}/>
-            <Button text="Verwijder blog" variant="danger" handleClick={() => deleteBlogById(id)}/>
-          </div>
+          error ? (
+            <span className='error-message'>{error}</span>
+          ) : (
+            blog && <div className="blog-details-container">
+              <BlogDetails blog={blog}/>
+              <Button text="Verwijder blog" variant="danger" handleClick={() => deleteBlogById(id)}/>
+            </div>
+          )
         )
       )}
     </div>
