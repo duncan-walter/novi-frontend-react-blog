@@ -1,0 +1,35 @@
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    background: rgb(44, 47, 57);
+    background: linear-gradient(37deg, rgba(44, 47, 57, 1) 0%, rgba(0, 0, 0, 1) 8%, rgba(80, 83, 92, 1) 100%);
+    padding: 2em;
+
+    nav {
+        display: flex;
+        flex-direction: row;
+        gap: 5em;
+
+        .nav-item,
+        .nav-item-active {
+            color: white;
+        }
+
+        .nav-item {
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-item-active {
+            border-bottom: 2px solid var(--color-primary);
+        }
+
+        .nav-item-active,
+        a:hover {
+            color: var(--color-primary);
+        }
+    }
+}
+
+.nav-company-logo {
+    width: 200px;
+}
